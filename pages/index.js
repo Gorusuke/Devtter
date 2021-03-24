@@ -1,19 +1,18 @@
-import Head from 'next/head'
+import AppLayout from '../components/AppLayout'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Devter</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Devter
-        </h1>
-      </main>
-    </div>
+    <AppLayout>
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <div className={styles.img_container}>
+            <img className={styles.img} src='https://imagenes-pages.s3-sa-east-1.amazonaws.com/Gorusuke-Logo+2.png' alt="Logo" />
+          </div>
+          <h1 className={styles.title}>Devtter</h1>
+          <h2 className={styles.subtitle}>Talk about development <br/> with developers</h2>
+        </main>
+      </div>
+    </AppLayout>
   )
 }
