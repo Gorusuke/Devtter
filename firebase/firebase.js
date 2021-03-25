@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import 'firebase/auth'
+// import 'firebase/auth'
 
 
 const firebaseConfig = {
@@ -20,8 +20,29 @@ if (!firebase.apps.length) {
 
 export default firebase
 
+const mapUserFromFirebase = (user) => {
+  console.info(user)
+  const {displayName, email, photoURL} = user
+  return {
+    avatar: photoURL, 
+    username: displayName,
+    email
+  }
+}
+
+export const authStateChange = (onChange) => {
+  return firebase.auth().onAuthStateChanged(user => {
+    const normalizedUser = user ? mapUserFromFirebase(user) : null
+    onChange(normalizedUser)
+  })
+}
+
 
 export const loginWithGithub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider()
-  return firebase.auth().signInWithPopup(githubProvider)
+  return firebase
+  .auth()
+  .signInWithPopup(githubProvider)
+  // .then(user => mapUserFromFirebase(user))
+  // .then(mapUserFromFirebase) // Esta es otra forma de devolver la funcion ya que el valor es el mismo
 }
