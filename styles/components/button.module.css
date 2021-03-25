@@ -1,0 +1,48 @@
+.button{
+  background-color: var(--dark);
+  border: 2px solid var(--dark);
+  color:var(--light);
+  border-radius: 9999px;
+  font-weight: 800;
+  padding: 8px 24px;
+  transform: perspective(500px) rotateY(-15deg);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  transition: all .3 ease;
+  animation: buttonAnim 1.5s .5s backwards;
+  display: flex;
+  align-items: center;
+}
+
+.button:hover{
+  background-color: var(--light);
+  color: var(--dark);
+  transform: perspective(500px) rotateY(15deg);
+  text-shadow: -4px 3px 1px rgba(0, 0, 0, .4);
+}
+
+.button::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #fff, #323232, transparent);
+  position: absolute;
+  top: 0;
+  left: -102%;
+  transform: skewX(-30deg);   
+  transition: all .3s
+}
+
+.button:hover::before{
+  left: 100%;
+}
+
+.color {
+  margin-left: .5rem;
+}
+
+@keyframes buttonAnim{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}

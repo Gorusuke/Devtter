@@ -13,9 +13,6 @@
   display: grid;
   place-items: center;
   place-content: center;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* flex-direction: column; */
 }
 
 .img_container{
@@ -37,7 +34,7 @@
   font-size: 1.4rem;
   color: var(--secondary);
   text-align: center;
-
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 520px ){
