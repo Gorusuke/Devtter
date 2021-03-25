@@ -1,10 +1,9 @@
-  
-import * as React from "react"
+
+import * as React from 'react'
 import button from '../../styles/components/button.module.css'
 
-export default function GitHub({color}) {
-
-  const isColor = color ? '#000' : '#fff' 
+export default function GitHub ({ color }) {
+  const isColor = color ? '#000' : '#fff'
 
   return (
     <svg className={button.color}

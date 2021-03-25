@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const AppLayout = ({children}) => {
+const AppLayout = ({ children }) => {
   return (
     <>
       <Head>

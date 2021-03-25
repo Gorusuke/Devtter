@@ -1,6 +1,5 @@
-import firebase from 'firebase';
+import firebase from "firebase"
 // import 'firebase/auth'
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBKBZdYMIQLElDMTSpNjhnZnLAPJZHdaB4",
@@ -9,11 +8,11 @@ const firebaseConfig = {
   storageBucket: "devtter-1be58.appspot.com",
   messagingSenderId: "205274350334",
   appId: "1:205274350334:web:61d66eb3216e0fbf195baf",
-  measurementId: "G-NLR38DHS94"
+  measurementId: "G-NLR38DHS94",
 }
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig)
 }
 
 // firebase.initializeApp(firebaseConfig)
@@ -22,27 +21,24 @@ export default firebase
 
 const mapUserFromFirebase = (user) => {
   console.info(user)
-  const {displayName, email, photoURL} = user
+  const { displayName, email, photoURL } = user
   return {
-    avatar: photoURL, 
+    avatar: photoURL,
     username: displayName,
-    email
+    email,
   }
 }
 
 export const authStateChange = (onChange) => {
-  return firebase.auth().onAuthStateChanged(user => {
+  return firebase.auth().onAuthStateChanged((user) => {
     const normalizedUser = user ? mapUserFromFirebase(user) : null
     onChange(normalizedUser)
   })
 }
 
-
 export const loginWithGithub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider()
-  return firebase
-  .auth()
-  .signInWithPopup(githubProvider)
+  return firebase.auth().signInWithPopup(githubProvider)
   // .then(user => mapUserFromFirebase(user))
   // .then(mapUserFromFirebase) // Esta es otra forma de devolver la funcion ya que el valor es el mismo
 }
