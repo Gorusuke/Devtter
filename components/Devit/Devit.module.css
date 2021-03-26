@@ -1,0 +1,17 @@
+/* .devit_container{
+  background-image: white;
+} */
+
+.article{
+  display: flex;
+  padding: 10px 15px;
+  border-bottom: 2px solid #eaf7ff;
+}
+
+.container{
+  padding-left: 10px;
+}
+
+.message{
+  line-height: 1.3;
+}

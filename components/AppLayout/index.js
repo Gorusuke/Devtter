@@ -1,4 +1,5 @@
-import Head from 'next/head'
+import Head from "next/head"
+import styles from "./Layout.module.css"
 
 const AppLayout = ({ children }) => {
   return (
@@ -7,8 +8,8 @@ const AppLayout = ({ children }) => {
         <title>Devter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        {children}
+      <div className={styles.container}>
+        <main className={styles.main}>{children}</main>
       </div>
     </>
   )

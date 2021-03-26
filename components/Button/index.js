@@ -1,4 +1,4 @@
-import button from '../../styles/components/button.module.css'
+import button from "./button.module.css"
 
 const index = ({ children, onClick }) => {
   return (

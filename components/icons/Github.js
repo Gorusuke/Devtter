@@ -1,17 +1,17 @@
+import * as React from "react"
+import button from "../Button/button.module.css"
 
-import * as React from 'react'
-import button from '../../styles/components/button.module.css'
-
-export default function GitHub ({ color }) {
-  const isColor = color ? '#000' : '#fff'
+export default function GitHub({ color }) {
+  const isColor = color ? "#000" : "#fff"
 
   return (
-    <svg className={button.color}
+    <svg
+      className={button.color}
       width={24}
       height={24}
       viewBox="0 0 1024 1024"
       fill="#000"
-      >
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
