@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react"
 import AppLayout from "../../components/AppLayout"
 import Devit from "../../components/Devit"
+import useUser from "../../hooks/useUser"
 import styles from "./Home.module.css"
 
 const Home = () => {
   const [timeline, setTimeline] = useState([])
+  const user = useUser()
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/statuses/home_timeline")
-      .then((res) => res.json())
-      .then((res) => setTimeline(res))
+    user &&
+      fetch("http://localhost:3000/api/statuses/home_timeline")
+        .then((res) => res.json())
+        .then((res) => setTimeline(res))
     // .then(setTimeline) // Tambien se puede hacer asi
-  }, [])
+  }, [user])
 
   return (
     <AppLayout>
@@ -19,9 +22,9 @@ const Home = () => {
         <h2 className={styles.title}>Inicio</h2>
       </header>
       <section className={styles.section}>
-        {timeline.map((devit) => (
+        {timeline.map((devit, i) => (
           <Devit
-            key={devit.id}
+            key={i}
             avatar={devit.avatar}
             username={devit.username}
             message={devit.message}

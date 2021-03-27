@@ -1,10 +1,13 @@
-.header{
-  border-bottom: 1px solid #aaa;
-  height: 49px;
-  position: fixed;
-  width: var(--mobile);
-  display: flex;
+.header {
   align-items: center;
+  background: #ffffffaa;
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  height: 49px;
+  position: sticky;
+  top: 0;
+  width: 100%;
 }
 
 .title {
@@ -13,14 +16,15 @@
   padding-left: 10px;
 }
 
-.section{
-  padding-top: 49px;
+.section {
+  /* padding-top: 49px; */
 }
 
-.footer{
+.footer {
+  background: #ffffff;
   border-top: 1px solid #aaa;
-  height: 49px;
-  position: fixed;
   bottom: 0;
-  width: var(--mobile);
+  height: 49px;
+  position: sticky;
+  width: 100%;
 }

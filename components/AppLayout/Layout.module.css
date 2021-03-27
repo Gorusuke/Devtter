@@ -1,6 +1,6 @@
 .container {
-  min-height: 100vh;
   display: grid;
+  min-height: 100vh;
   place-items: center;
 }
 
@@ -8,8 +8,9 @@
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba( 0, 0, 0, .2);
-  position: relative;
   height: 100vh;
+  overflow-y: auto;
+  position: relative;
   width: 100%;
 }
 

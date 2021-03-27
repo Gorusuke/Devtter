@@ -1,34 +1,29 @@
+import { loginWithGithub } from "../firebase/firebase"
+import { useCallback, useEffect, useState } from "react"
+import { useRouter } from "next/router"
 import AppLayout from "../components/AppLayout"
 import Button from "../components/Button"
 import Github from "../components/icons/Github"
-import { useCallback, useEffect, useState } from "react"
-import { loginWithGithub, authStateChange } from "../firebase/firebase"
-import Avatar from "../components/Avatar"
-import styles from "../styles/pages/Index.module.css"
 import Logo from "../components/icons/Logo"
+import Spinner from "../components/Spinner"
+import useUser from "../hooks/useUser"
+import styles from "../styles/pages/Index.module.css"
+// import Avatar from "../components/Avatar"
 
 export default function Home() {
   const [color, setColor] = useState(false)
-  const [user, setUser] = useState(undefined)
+  const user = useUser()
+  const router = useRouter()
 
   useEffect(() => {
-    authStateChange(setUser)
-  }, [])
+    user && router.replace("/home")
+  }, [user])
 
   const mouseEnter = useCallback(() => setColor(true), [setColor])
   const mouseLeave = useCallback(() => setColor(false), [setColor])
 
   const handleClick = () => {
-    loginWithGithub()
-      .then((user) => {
-        const { avatar, username, email } = user
-        setUser({
-          avatar,
-          username,
-          email,
-        })
-      })
-      .catch((err) => console.info(err))
+    loginWithGithub().catch((err) => console.info(err))
   }
 
   return (
@@ -46,15 +41,7 @@ export default function Home() {
               <Github color={color} />
             </Button>
           )}
-          {user && user.avatar && (
-            <div>
-              <Avatar
-                src={user.avatar}
-                alt={user.username}
-                text={user.username}
-              />
-            </div>
-          )}
+          {user === undefined && <Spinner />}
         </div>
       </div>
     </AppLayout>

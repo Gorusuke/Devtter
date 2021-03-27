@@ -1,4 +1,5 @@
 import firebase from "firebase"
+import "firebase/firestore"
 // import 'firebase/auth'
 
 const firebaseConfig = {
@@ -15,17 +16,17 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
 }
 
-// firebase.initializeApp(firebaseConfig)
+const db = firebase.firestore()
 
 export default firebase
 
 const mapUserFromFirebase = (user) => {
-  console.info(user)
-  const { displayName, email, photoURL } = user
+  const { displayName, email, photoURL, uid } = user
   return {
     avatar: photoURL,
     username: displayName,
     email,
+    uid,
   }
 }
 
@@ -41,4 +42,16 @@ export const loginWithGithub = () => {
   return firebase.auth().signInWithPopup(githubProvider)
   // .then(user => mapUserFromFirebase(user))
   // .then(mapUserFromFirebase) // Esta es otra forma de devolver la funcion ya que el valor es el mismo
+}
+
+export const addDevit = ({ avatar, content, userId, userName }) => {
+  return db.collection("devitts").add({
+    avatar,
+    content,
+    userId,
+    userName,
+    createAt: firebase.firestore.Timestamp.fromDate(new Date()),
+    likesCount: 0,
+    sharedCount: 0,
+  })
 }
