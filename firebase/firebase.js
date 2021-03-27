@@ -55,3 +55,15 @@ export const addDevit = ({ avatar, content, userId, userName }) => {
     sharedCount: 0,
   })
 }
+
+export const fetchLastedDevits = () => {
+  return db
+    .collection("devitts")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+    })
+}
