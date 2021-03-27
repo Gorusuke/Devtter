@@ -1,17 +1,17 @@
 import Avatar from "../Avatar"
 import styles from "./Devit.module.css"
-import { formatRelative } from "date-fns"
+import useTimeAgo from "../../hooks/useTimeAgo"
 
 const Devit = ({ userName, avatar, content, id, userId, createAt }) => {
+  const timeAgo = useTimeAgo(createAt)
+
   return (
     <article className={styles.article}>
       <Avatar src={avatar} alt={userName} />
       <div className={styles.container}>
         <header>
           <strong className={styles.username}>{userName}</strong>
-          <span className={styles.date}>
-            {formatRelative(new Date(createAt.seconds * 1000), new Date())}
-          </span>
+          <span className={styles.date}>{timeAgo}</span>
         </header>
         <p className={styles.message}>{content}</p>
       </div>

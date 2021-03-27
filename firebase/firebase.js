@@ -59,11 +59,20 @@ export const addDevit = ({ avatar, content, userId, userName }) => {
 export const fetchLastedDevits = () => {
   return db
     .collection("devitts")
+    .orderBy("createAt", "desc")
     .get()
     .then(({ docs }) => {
-      return docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }))
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+        const { createAt } = data
+        // ...doc.data(),
+        // createAt: doc.createAt,
+        return {
+          ...data,
+          id,
+          createAt: +createAt.toDate(),
+        }
+      })
     })
 }

@@ -5,6 +5,7 @@ import useUser from "../../../hooks/useUser"
 import styles from "./Tweet.module.css"
 import { addDevit } from "../../../firebase/firebase"
 import { useRouter } from "next/router"
+import Head from "next/head"
 
 const COMPOSE_STATES = {
   USER_NOT_KNOW: 0,
@@ -47,6 +48,9 @@ const ComposeTweet = () => {
   return (
     <>
       <AppLayout>
+        <Head>
+          <title>Devit Create || Devtter</title>
+        </Head>
         <form onSubmit={handleSubmit}>
           <textarea
             className={styles.textarea}

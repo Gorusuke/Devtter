@@ -4,6 +4,11 @@ import Devit from "../../components/Devit"
 import useUser from "../../hooks/useUser"
 import styles from "./Home.module.css"
 import { fetchLastedDevits } from "../../firebase/firebase"
+import Link from "next/link"
+import Head from "next/head"
+import Create from "../../components/icons/Create"
+import Homes from "../../components/icons/Homes"
+import Search from "../../components/icons/Search"
 
 const Home = () => {
   const [timeline, setTimeline] = useState([])
@@ -16,6 +21,9 @@ const Home = () => {
 
   return (
     <AppLayout>
+      <Head>
+        <title>Home || Devtter</title>
+      </Head>
       <header className={styles.header}>
         <h2 className={styles.title}>Inicio</h2>
       </header>
@@ -32,9 +40,23 @@ const Home = () => {
           />
         ))}
       </section>
-      <footer className={styles.footer}>
-        <nav className={styles.nav}>Hola</nav>
-      </footer>
+      <nav className={styles.nav}>
+        <Link href="/home">
+          <a>
+            <Homes />
+          </a>
+        </Link>
+        <Link href="/search">
+          <a>
+            <Search />
+          </a>
+        </Link>
+        <Link href="/compose/tweet">
+          <a>
+            <Create />
+          </a>
+        </Link>
+      </nav>
     </AppLayout>
   )
 }

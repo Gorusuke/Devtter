@@ -17,14 +17,31 @@
 }
 
 .section {
-  /* padding-top: 49px; */
+  flex: 1;
 }
 
-.footer {
+.nav {
   background: #ffffff;
   border-top: 1px solid #aaa;
   bottom: 0;
   height: 49px;
   position: sticky;
   width: 100%;
+  display: flex;
 }
+
+.nav > a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  margin: 0 3rem;
+}
+
+.nav > a:hover {
+  background: radial-gradient(#0099ff33 15%, transparent 10%);
+  background-size: 180px 180px;
+  background-position: center;
+}
+
