@@ -1,7 +1,6 @@
 import { loginWithGithub } from "../firebase/firebase"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import AppLayout from "../components/AppLayout"
 import Button from "../components/Button"
 import Github from "../components/icons/Github"
 import Logo from "../components/icons/Logo"
@@ -27,23 +26,21 @@ export default function Home() {
   }
 
   return (
-    <AppLayout>
-      <div className={styles.container}>
-        <Logo width="80px" />
-        <h1 className={styles.title}>Devtter</h1>
-        <h2 className={styles.subtitle}>
-          Talk about development <br /> with developers
-        </h2>
-        <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
-          {user === null && (
-            <Button onClick={handleClick}>
-              Login with Github
-              <Github color={color} />
-            </Button>
-          )}
-          {user === undefined && <Spinner />}
-        </div>
+    <div className={styles.container}>
+      <Logo width="80px" />
+      <h1 className={styles.title}>Devtter</h1>
+      <h2 className={styles.subtitle}>
+        Talk about development <br /> with developers
+      </h2>
+      <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+        {user === null && (
+          <Button onClick={handleClick}>
+            Login with Github
+            <Github color={color} />
+          </Button>
+        )}
+        {user === undefined && <Spinner />}
       </div>
-    </AppLayout>
+    </div>
   )
 }

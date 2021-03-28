@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import AppLayout from "../../../components/AppLayout"
 import Button from "../../../components/Button"
 import Avatar from "../../../components/Avatar"
 import useUser from "../../../hooks/useUser"
@@ -102,41 +101,39 @@ const ComposeTweet = () => {
 
   return (
     <>
-      <AppLayout>
-        <Head>
-          <title>Devit Create || Devtter</title>
-        </Head>
-        <section className={styles.devitt_container}>
-          {user && (
-            <div className={styles.avatar_container}>
-              <Avatar src={user.avatar} alt={user.username} />
-            </div>
+      <Head>
+        <title>Devit Create || Devtter</title>
+      </Head>
+      <section className={styles.devitt_container}>
+        {user && (
+          <div className={styles.avatar_container}>
+            <Avatar src={user.avatar} alt={user.username} />
+          </div>
+        )}
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <textarea
+            style={{ border: `${border}` }}
+            className={styles.textarea}
+            placeholder="¿Que esta pasando?"
+            value={message}
+            onChange={handleMessage}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          ></textarea>
+          {imageUrl && (
+            <section className={styles.image_container}>
+              <button onClick={() => setImageUrl(null)}>X</button>
+              <img src={imageUrl} className={styles.image} />
+            </section>
           )}
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <textarea
-              style={{ border: `${border}` }}
-              className={styles.textarea}
-              placeholder="¿Que esta pasando?"
-              value={message}
-              onChange={handleMessage}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            ></textarea>
-            {imageUrl && (
-              <section className={styles.image_container}>
-                <button onClick={() => setImageUrl(null)}>X</button>
-                <img src={imageUrl} className={styles.image} />
-              </section>
-            )}
-            <div className={styles.button_container}>
-              <Button disabled={isButtonDisabled} button2>
-                Devittear
-              </Button>
-            </div>
-          </form>
-        </section>
-      </AppLayout>
+          <div className={styles.button_container}>
+            <Button disabled={isButtonDisabled} button2>
+              Devittear
+            </Button>
+          </div>
+        </form>
+      </section>
     </>
   )
 }

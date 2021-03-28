@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import AppLayout from "../../components/AppLayout"
 import Devit from "../../components/Devit"
 import useUser from "../../hooks/useUser"
 import styles from "./Home.module.css"
@@ -20,7 +19,7 @@ const Home = () => {
   }, [user])
 
   return (
-    <AppLayout>
+    <>
       <Head>
         <title>Home || Devtter</title>
       </Head>
@@ -37,7 +36,7 @@ const Home = () => {
             key={devit.id}
             userId={devit.userId}
             userName={devit.userName}
-            image={devit.img}
+            img={devit.img}
           />
         ))}
       </section>
@@ -58,7 +57,7 @@ const Home = () => {
           </a>
         </Link>
       </nav>
-    </AppLayout>
+    </>
   )
 }
 

@@ -6,10 +6,20 @@
   display: flex;
   padding: 10px 15px;
   border-bottom: 2px solid #eee;
+  transition: all .3s ease;
+}
+
+.article:hover{
+  cursor: pointer;
+  background-color: #ebebeb;
 }
 
 .container{
   padding-left: 10px;
+}
+
+.container > header > a:hover {
+  text-decoration: underline;
 }
 
 .container > img {
