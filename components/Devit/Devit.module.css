@@ -12,6 +12,12 @@
   padding-left: 10px;
 }
 
+.container > img {
+  width: 80%;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
+
 .message{
   line-height: 1.3;
 }

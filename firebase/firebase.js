@@ -44,12 +44,13 @@ export const loginWithGithub = () => {
   // .then(mapUserFromFirebase) // Esta es otra forma de devolver la funcion ya que el valor es el mismo
 }
 
-export const addDevit = ({ avatar, content, userId, userName }) => {
+export const addDevit = ({ avatar, content, userId, userName, img }) => {
   return db.collection("devitts").add({
     avatar,
     content,
     userId,
     userName,
+    img,
     createAt: firebase.firestore.Timestamp.fromDate(new Date()),
     likesCount: 0,
     sharedCount: 0,
@@ -75,4 +76,10 @@ export const fetchLastedDevits = () => {
         }
       })
     })
+}
+
+export const uploadImage = (file) => {
+  const ref = firebase.storage().ref(`/images/${file.name}`)
+  const task = ref.put(file)
+  return task
 }

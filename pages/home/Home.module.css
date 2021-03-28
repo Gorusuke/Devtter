@@ -1,19 +1,23 @@
 .header {
-  align-items: center;
   background: #ffffffaa;
   backdrop-filter: blur(4px);
   border-bottom: 1px solid #ccc;
-  display: flex;
-  height: 49px;
+  
   position: sticky;
   top: 0;
   width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  /* height: 49px; */
 }
 
 .title {
   font-size: 1.3rem;
   font-weight: 800;
-  padding-left: 10px;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  height: 49px;
 }
 
 .section {

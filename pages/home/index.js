@@ -37,6 +37,7 @@ const Home = () => {
             key={devit.id}
             userId={devit.userId}
             userName={devit.userName}
+            image={devit.img}
           />
         ))}
       </section>
