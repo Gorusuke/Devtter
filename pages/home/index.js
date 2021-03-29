@@ -14,11 +14,12 @@ const Home = () => {
   const user = useUser()
 
   useEffect(() => {
+    let unsubscribe
     if (user) {
-      listenLastestDevitt((newDevitts) => {
-        setTimeline(newDevitts)
-      })
+      unsubscribe = listenLastestDevitt((newDevitts) => setTimeline(newDevitts))
     }
+
+    return () => unsubscribe && unsubscribe()
     // user && fetchLastedDevits().then((devit) => setTimeline(devit))
     // .then(setTimeline) // Tambien se puede hacer asi
   }, [user])
