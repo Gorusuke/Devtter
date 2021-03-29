@@ -43,6 +43,14 @@ export const loginWithGithub = () => {
   // .then(mapUserFromFirebase) // Esta es otra forma de devolver la funcion ya que el valor es el mismo
 }
 
+export const githubSignOut = async () => {
+  try {
+    await firebase.auth().signOut()
+  } catch (error) {
+    console.info(error)
+  }
+}
+
 export const addDevit = ({ avatar, content, userId, userName, img }) => {
   return db.collection("devitts").add({
     avatar,

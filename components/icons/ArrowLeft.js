@@ -1,16 +1,27 @@
 import * as React from "react"
 
-export default function ArrowLeft(props) {
+function SvgComponent(props) {
   return (
-    <svg width={21} height={21} viewBox="0 0 21 21" {...props}>
+    <svg
+      height={35}
+      viewBox="0 0 21 21"
+      width={35}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g
         fill="none"
         fillRule="evenodd"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
+        transform="matrix(-1 0 0 1 20 2)"
       >
-        <path d="M7.5 6.497l-4 4.002 4 4M16.5 10.5h-13" />
+        <circle cx={8.5} cy={8.5} r={8} />
+        <path d="M9.5 11.499l3-3-3-3M12.5 8.5h-8" />
       </g>
     </svg>
   )
 }
+
+export default SvgComponent

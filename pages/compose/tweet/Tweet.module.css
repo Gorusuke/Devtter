@@ -55,6 +55,15 @@
   border-radius: .8rem;
 }
 
-.button_container{
-  padding-left: 15px;
+.arrow{
+  display: flex;
+  padding-left: 20px;
+  align-self: center;
 }
+
+.button_container {
+  padding-right: 20px;
+}
+
+
+

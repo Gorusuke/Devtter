@@ -2,21 +2,28 @@ import { useEffect, useState } from "react"
 import Devit from "../../components/Devit"
 import useUser from "../../hooks/useUser"
 import styles from "./Home.module.css"
-import { listenLastestDevitt } from "../../firebase/firebase"
+import { listenLastestDevitt, githubSignOut } from "../../firebase/firebase"
 import Link from "next/link"
 import Head from "next/head"
 import Create from "../../components/icons/Create"
 import Homes from "../../components/icons/Homes"
-import Search from "../../components/icons/Search"
+import Button from "../../components/Button"
+import Header from "../../components/Header"
+import Spinner from "../../components/Spinner"
 
 const Home = () => {
   const [timeline, setTimeline] = useState([])
+  const [loading, setLoading] = useState(false)
   const user = useUser()
 
   useEffect(() => {
+    setLoading(true)
     let unsubscribe
     if (user) {
-      unsubscribe = listenLastestDevitt((newDevitts) => setTimeline(newDevitts))
+      unsubscribe = listenLastestDevitt((newDevitts) => {
+        setTimeline(newDevitts)
+        setLoading(false)
+      })
     }
 
     return () => unsubscribe && unsubscribe()
@@ -29,40 +36,46 @@ const Home = () => {
       <Head>
         <title>Home || Devtter</title>
       </Head>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Inicio</h2>
-      </header>
-      <section className={styles.section}>
-        {timeline.map((devit) => (
-          <Devit
-            avatar={devit.avatar}
-            content={devit.content}
-            createAt={devit.createAt}
-            id={devit.id}
-            key={devit.id}
-            userId={devit.userId}
-            userName={devit.userName}
-            img={devit.img}
-          />
-        ))}
-      </section>
-      <nav className={styles.nav}>
-        <Link href="/home">
-          <a>
-            <Homes />
-          </a>
-        </Link>
-        <Link href="/search">
-          <a>
-            <Search />
-          </a>
-        </Link>
-        <Link href="/compose/tweet">
-          <a>
-            <Create />
-          </a>
-        </Link>
-      </nav>
+      {loading ? (
+        <Spinner spinner2 />
+      ) : (
+        <>
+          <Header>
+            <h2 className={styles.title}>Inicio</h2>
+            <div className={styles.button_container}>
+              <Button button2 onClick={() => githubSignOut()}>
+                Sign Out
+              </Button>
+            </div>
+          </Header>
+          <section className={styles.section}>
+            {timeline.map((devit) => (
+              <Devit
+                avatar={devit.avatar}
+                content={devit.content}
+                createAt={devit.createAt}
+                id={devit.id}
+                key={devit.id}
+                userId={devit.userId}
+                userName={devit.userName}
+                img={devit.img}
+              />
+            ))}
+          </section>
+          <nav className={styles.nav}>
+            <Link href="/home">
+              <a>
+                <Homes />
+              </a>
+            </Link>
+            <Link href="/compose/tweet">
+              <a>
+                <Create />
+              </a>
+            </Link>
+          </nav>
+        </>
+      )}
     </>
   )
 }

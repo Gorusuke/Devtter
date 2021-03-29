@@ -1,10 +1,26 @@
+import Link from "next/link"
 import Devit from "../../components/Devit"
+import Header from "../../components/Header"
+import ArrowLeft from "../../components/icons/ArrowLeft"
 
 const DevitPage = (props) => {
   // console.info(props)
   return (
     <>
+      {/* <Header></Header> */}
       <Devit {...props} />
+      <Link href="/home">
+        {/* <a><ArrowLeft /></a> */}
+        <a
+          style={{
+            textAlign: "center",
+            marginTop: "10px",
+            fontWeight: "600",
+          }}
+        >
+          Volver a Inicio
+        </a>
+      </Link>
     </>
   )
 }

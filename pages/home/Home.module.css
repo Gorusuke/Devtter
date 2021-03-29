@@ -1,14 +1,13 @@
-.header {
-  background: #ffffffaa;
-  backdrop-filter: blur(4px);
-  border-bottom: 1px solid #ccc;
-  
-  position: sticky;
-  top: 0;
-  width: 100%;
+.button_container{
   /* display: flex; */
-  /* align-items: center; */
-  /* height: 49px; */
+  /* justify-content: space-between; */
+  padding-right: 10px;
+  /* align-self: flex-end; */
+}
+
+.button_container > button{
+  padding: 5px 16px;
+  align-self: flex-end;
 }
 
 .title {
@@ -27,7 +26,7 @@
 .nav {
   background: #ffffff;
   border-top: 1px solid #aaa;
-  bottom: 0;
+  bottom: -1px;
   height: 49px;
   position: sticky;
   width: 100%;
