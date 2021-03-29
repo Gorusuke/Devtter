@@ -1,7 +1,7 @@
 import Devit from "../../components/Devit"
 
 const DevitPage = (props) => {
-  console.info(props)
+  // console.info(props)
   return (
     <>
       <Devit {...props} />
@@ -11,14 +11,17 @@ const DevitPage = (props) => {
 
 export default DevitPage
 
-DevitPage.getInitialProps = (context) => {
-  const { query, res } = context
-  const { id } = query
+export const getServerSideProps = async (context) => {
+  // params, req, res, query
+  const { params, res } = context
+  const { id } = params
 
-  return fetch(`http://localhost:3000/api/devitts/${id}`).then((response) => {
-    if (response.ok) return response.json()
-    if (res) {
-      res.writeHead(301, { Location: "/home" }).end()
-    }
-  })
+  const response = await fetch(`http://localhost:3000/api/devitts/${id}`)
+  if (response.ok) {
+    const props = await response.json()
+    return { props }
+  }
+  if (res) {
+    res.writeHead(301, { Location: "/home" }).end()
+  }
 }

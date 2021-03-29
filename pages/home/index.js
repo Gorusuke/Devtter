@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Devit from "../../components/Devit"
 import useUser from "../../hooks/useUser"
 import styles from "./Home.module.css"
-import { fetchLastedDevits } from "../../firebase/firebase"
+import { listenLastestDevitt } from "../../firebase/firebase"
 import Link from "next/link"
 import Head from "next/head"
 import Create from "../../components/icons/Create"
@@ -14,7 +14,12 @@ const Home = () => {
   const user = useUser()
 
   useEffect(() => {
-    user && fetchLastedDevits().then((devit) => setTimeline(devit))
+    if (user) {
+      listenLastestDevitt((newDevitts) => {
+        setTimeline(newDevitts)
+      })
+    }
+    // user && fetchLastedDevits().then((devit) => setTimeline(devit))
     // .then(setTimeline) // Tambien se puede hacer asi
   }, [user])
 
